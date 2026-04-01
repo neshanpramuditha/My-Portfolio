@@ -1,18 +1,49 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Mail, MapPin, Send, Github, Linkedin, ExternalLink, CheckCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setFormData({ name: "", email: "", message: "" });
+    if (sending) return;
+    setSending(true);
+    try {
+      await emailjs.send(
+        "service_8k0ig2x",
+        "template_0nyhm0g",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: "neshanpramu2@gmail.com",
+        },
+        "xrYUAq5zfpH3lo8so"
+      );
+      setSubmitted(true);
+      toast({
+        title: "✅ Message sent successfully!",
+        description: "I'll reply to you soon...",
+      });
+      setTimeout(() => setSubmitted(false), 3000);
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "❌ Failed to send message",
+        description: "Please try again or email me directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setSending(false);
+    }
   };
 
   const socials = [
@@ -89,9 +120,10 @@ const ContactSection = () => {
             </motion.div>
             <motion.button
               type="submit"
+              disabled={sending}
               whileHover={{ scale: 1.02, boxShadow: "0 0 30px hsl(45 100% 49% / 0.25)" }}
               whileTap={{ scale: 0.98 }}
-              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono font-semibold rounded-xl transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-mono font-semibold rounded-xl transition-colors disabled:opacity-60"
             >
               {submitted ? (
                 <motion.span
@@ -101,6 +133,8 @@ const ContactSection = () => {
                 >
                   <CheckCircle size={16} /> Message Sent!
                 </motion.span>
+              ) : sending ? (
+                <>Sending...</>
               ) : (
                 <>
                   <Send size={16} /> Send Message
