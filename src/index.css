@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 216 100% 4%;
+    --foreground: 45 100% 90%;
+
+    --card: 214 100% 12%;
+    --card-foreground: 45 100% 90%;
+
+    --popover: 214 100% 12%;
+    --popover-foreground: 45 100% 90%;
+
+    --primary: 45 100% 49%;
+    --primary-foreground: 216 100% 4%;
+
+    --secondary: 214 100% 12%;
+    --secondary-foreground: 45 100% 90%;
+
+    --muted: 213 100% 8%;
+    --muted-foreground: 213 30% 55%;
+
+    --accent: 212 100% 21%;
+    --accent-foreground: 45 100% 90%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 213 50% 16%;
+    --input: 213 50% 16%;
+    --ring: 45 100% 49%;
+
+    --radius: 0.75rem;
+
+    --gold: 45 100% 49%;
+    --gold-bright: 50 100% 52%;
+    --navy-deep: 216 100% 4%;
+    --navy-mid: 214 100% 12%;
+    --navy-accent: 212 100% 21%;
+
+    --sidebar-background: 214 100% 12%;
+    --sidebar-foreground: 45 100% 90%;
+    --sidebar-primary: 45 100% 49%;
+    --sidebar-primary-foreground: 216 100% 4%;
+    --sidebar-accent: 212 100% 21%;
+    --sidebar-accent-foreground: 45 100% 90%;
+    --sidebar-border: 213 50% 16%;
+    --sidebar-ring: 45 100% 49%;
+  }
+
+  :root.light {
+    --background: 45 30% 96%;
+    --foreground: 216 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 216 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 50% 15%;
+
+    --primary: 45 100% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 213 30% 92%;
+    --secondary-foreground: 216 50% 15%;
+
+    --muted: 213 20% 90%;
+    --muted-foreground: 213 20% 40%;
+
+    --accent: 212 60% 90%;
+    --accent-foreground: 216 50% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 213 20% 85%;
+    --input: 213 20% 85%;
+    --ring: 45 100% 42%;
+
+    --gold: 45 100% 42%;
+    --gold-bright: 50 100% 45%;
+    --navy-deep: 45 30% 96%;
+    --navy-mid: 0 0% 100%;
+    --navy-accent: 212 60% 90%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 216 50% 15%;
+    --sidebar-primary: 45 100% 42%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 212 60% 90%;
+    --sidebar-accent-foreground: 216 50% 15%;
+    --sidebar-border: 213 20% 85%;
+    --sidebar-ring: 45 100% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-bright)));
+  }
+
+  .bg-gradient-navy {
+    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--card)) 100%);
+  }
+
+  .bg-gradient-card {
+    background: linear-gradient(145deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+  }
+
+  .border-gold-glow {
+    border-color: hsl(var(--gold) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--gold) / 0.1);
+  }
+
+  .shadow-gold {
+    box-shadow: 0 4px 30px hsl(var(--gold) / 0.15);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 40px hsl(var(--gold) / 0.2), 0 0 80px hsl(var(--gold) / 0.1);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--gold) / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--gold) / 0.5);
+}
+
+body.hide-chatbot [id*="agent-widget"],
+body.hide-chatbot [class*="agent-widget"],
+body.hide-chatbot iframe[src*="widget"] {
+  display: none !important;
+}
+
+/* Chatbot widget button styling */
+[id*="agent-widget"] button,
+[class*="agent-widget"] button {
+  transform: scale(0.8) !important;
+  border-radius: 1.5rem !important;
+}
