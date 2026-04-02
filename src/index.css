@@ -160,15 +160,3 @@
   background: hsl(var(--gold) / 0.5);
 }
 
-body.hide-chatbot [id*="agent-widget"],
-body.hide-chatbot [class*="agent-widget"],
-body.hide-chatbot iframe[src*="widget"] {
-  display: none !important;
-}
-
-/* Chatbot widget button styling */
-[id*="agent-widget"] button,
-[class*="agent-widget"] button {
-  transform: scale(0.8) !important;
-  border-radius: 1.5rem !important;
-}

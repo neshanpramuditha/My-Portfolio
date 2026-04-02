@@ -1,135 +1,183 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { MessageCircle, X, Send, Bot } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { MessageCircle, X, Send, Bot, User } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import ReactMarkdown from "react-markdown";
 
-interface Message {
-  role: 'user' | 'bot';
-  text: string;
-}
+const GEMINI_API_KEY = "AIzaSyAVm5I6blzF9wI6NLszd9ETRBVZIqZgrH0";
+const GEMINI_MODEL = "gemini-3-flash-preview";
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
-const ChatBot: React.FC = () => {
+type Message = { role: "user" | "assistant"; content: string };
+
+const SYSTEM_PROMPT = `You are Neshan's portfolio assistant. You help visitors learn about Neshan Pramuditha — a MERN Stack Developer & ICT undergraduate at the University of Kelaniya. Be friendly, concise, and helpful. If asked something unrelated to Neshan or web development, politely redirect.`;
+
+const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'bot', text: "Hi! I'm Neshan's AI assistant. Ask me about his projects or skills!" }
+    { role: "assistant", content: "Hi! 👋 I'm Neshan's AI assistant. Ask me anything about his skills, projects, or experience!" },
   ]);
-  const [loading, setLoading] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-
-  // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  const sendMessage = async () => {
+    const text = input.trim();
+    if (!text || isLoading) return;
+
+    const userMsg: Message = { role: "user", content: text };
+    setMessages((prev) => [...prev, userMsg]);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      const history = [...messages, userMsg];
+      const contents = [
+        { role: "user", parts: [{ text: SYSTEM_PROMPT }] },
+        { role: "model", parts: [{ text: "Understood! I'm ready to help visitors learn about Neshan." }] },
+        ...history.map((m) => ({
+          role: m.role === "assistant" ? "model" : "user",
+          parts: [{ text: m.content }],
+        })),
+      ];
+
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contents }),
+      });
+
+      if (!res.ok) throw new Error("API error");
+
+      const data = await res.json();
+      const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't respond.";
+      setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
+    } catch {
+      setMessages((prev) => [...prev, { role: "assistant", content: "Oops! Something went wrong. Please try again." }]);
+    } finally {
+      setIsLoading(false);
     }
-  }, [messages, loading]);
-
-  const handleSend = async () => {
-  if (!input.trim() || loading) return;
-
-  const userMessage: Message = { role: "user", text: input };
-  setMessages((prev) => [...prev, userMessage]);
-  setLoading(true);
-  const currentInput = input;
-  setInput("");
-
-  try {
-    // 1. Get the model WITHOUT systemInstruction here to avoid the 404
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-    // 2. Start a chat session instead of just generating content
-    const chat = model.startChat({
-      history: [
-        {
-          role: "user",
-          parts: [{ text: "You are Neshan's Portfolio Assistant. Be professional and friendly. Answer questions about his MERN stack, PHP, and JavaScript skills. Mention his 'ReadCycle' project if asked about work samples." }],
-        },
-        {
-          role: "model",
-          parts: [{ text: "Understood. I will represent Neshan professionally and talk about his projects like ReadCycle." }],
-        },
-      ],
-    });
-
-    const result = await chat.sendMessage(currentInput);
-    const response = result.response;
-    const botMessage: Message = { role: "bot", text: response.text() };
-    
-    setMessages((prev) => [...prev, botMessage]);
-  } catch (error: any) {
-    console.error("Detailed Error:", error);
-    setMessages((prev) => [...prev, { role: 'bot', text: "Sorry, I'm having trouble connecting right now." }]);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 font-sans">
-    
-      {isOpen && (
-        <div className="mb-4 w-80 sm:w-96 h-[450px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
-          {/* Header */}
-          <div className="bg-primary p-4 flex justify-between items-center text-white bg-primary ">
-            <div className="flex items-center gap-2">
-              <Bot size={30} />
-              <span className="font-semibold text-sm">Neshan's AI Assistant</span>
+    <>
+      {/* Toggle Button */}
+      <AnimatePresence>
+        {!isOpen && (
+          <motion.button
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            onClick={() => setIsOpen(true)}
+            className="fixed bottom-6 right-6 z-50 w-12 h-8 rounded-[1.5rem] bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+            aria-label="Open chat"
+          >
+            <MessageCircle size={18} />
+          </motion.button>
+        )}
+      </AnimatePresence>
+
+      {/* Chat Window */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="fixed bottom-6 right-6 z-50 w-[360px] h-[500px] max-h-[80vh] rounded-2xl border border-border bg-card shadow-2xl flex flex-col overflow-hidden"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/50">
+              <div className="flex items-center gap-2">
+                <Bot size={18} className="text-primary" />
+                <span className="font-semibold text-sm text-foreground">Neshan's AI Assistant</span>
+              </div>
+              <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground transition-colors">
+                <X size={18} />
+              </button>
             </div>
-            <button onClick={() => setIsOpen(false)} className="hover:bg-primary/80  p-1 rounded">
-              <X size={18} />
-            </button>
-          </div>
 
-          {/* Messages Area */}
-          <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-50 text-black">
-            {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-                  msg.role === 'user' 
-                    ? 'bg-primary  text-white rounded-tr-none' 
-                    : 'bg-white text-gray-800 border border-gray-200 rounded-tl-none'
-                }`}>
-                  {msg.text}
+            {/* Messages */}
+            <div className="flex-1 overflow-y-auto px-4 py-3 space-y-3">
+              {messages.map((msg, i) => (
+                <div key={i} className={`flex gap-2 ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  {msg.role === "assistant" && (
+                    <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mt-1">
+                      <Bot size={14} className="text-primary" />
+                    </div>
+                  )}
+                  <div
+                    className={`max-w-[80%] rounded-xl px-3 py-2 text-sm ${
+                      msg.role === "user"
+                        ? "bg-primary text-primary-foreground rounded-br-sm"
+                        : "bg-muted text-foreground rounded-bl-sm"
+                    }`}
+                  >
+                    {msg.role === "assistant" ? (
+                      <div className="prose prose-sm prose-invert max-w-none [&_p]:m-0 [&_ul]:my-1 [&_ol]:my-1">
+                        <ReactMarkdown>{msg.content}</ReactMarkdown>
+                      </div>
+                    ) : (
+                      msg.content
+                    )}
+                  </div>
+                  {msg.role === "user" && (
+                    <div className="w-6 h-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-1">
+                      <User size={14} className="text-primary-foreground" />
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
-            {loading && (
-              <div className="flex justify-start">
-                <div className="bg-white border border-gray-200 p-3 rounded-2xl rounded-tl-none text-sm text-gray-500 italic">
-                  Typing...
+              ))}
+              {isLoading && (
+                <div className="flex gap-2 items-start">
+                  <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                    <Bot size={14} className="text-primary" />
+                  </div>
+                  <div className="bg-muted rounded-xl px-3 py-2 rounded-bl-sm">
+                    <div className="flex gap-1">
+                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:0ms]" />
+                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:150ms]" />
+                      <span className="w-2 h-2 bg-muted-foreground rounded-full animate-bounce [animation-delay:300ms]" />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
 
-          {/* Input Area */}
-          <div className="p-4 bg-white border-t border-gray-100 flex gap-2 text-black">
-            <input 
-              className="flex-1 bg-gray-100 border-none rounded-lg px-3 py-2 text-sm focus:ring-2 focus:primary/80 outline-none"
-              placeholder="Ask me anything..."
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-            />
-            <button 
-              onClick={handleSend}
-              className="bg-primary text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Send size={18} />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* 🔘 Toggle Button */}
-      <button 
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-14 h-14 bg-primary  rounded-full flex items-center justify-center text-white shadow-lg hover:scale-110 transition-transform active:scale-95"
-      >
-        {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
-      </button>
-    </div>
+            {/* Input */}
+            <div className="px-3 py-3 border-t border-border bg-muted/30">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  sendMessage();
+                }}
+                className="flex gap-2"
+              >
+                <input
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Ask about Neshan..."
+                  className="flex-1 bg-background border border-border rounded-lg px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  disabled={isLoading}
+                />
+                <button
+                  type="submit"
+                  disabled={isLoading || !input.trim()}
+                  className="w-9 h-9 rounded-lg bg-primary text-primary-foreground flex items-center justify-center disabled:opacity-50 hover:opacity-90 transition-opacity"
+                >
+                  <Send size={16} />
+                </button>
+              </form>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, MapPin, Send, Github, Linkedin, ExternalLink, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Send, Github, Linkedin, Facebook, CheckCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { useToast } from "@/hooks/use-toast";
 
@@ -50,7 +50,7 @@ const ContactSection = () => {
     { icon: Github, label: "GitHub", href: "https://github.com/neshanpramuditha" },
     { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/neshan-pramuditha-5170a1328" },
     { icon: Mail, label: "Email", href: "mailto:neshanpramu2@gmail.com" },
-    { icon: ExternalLink, label: "Credly", href: "https://credly.com/users/neshan-premarathna" },
+    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/share/1C8Gn3jzT1/?mibextid=wwXIfr" },
   ];
 
   const inputClasses = "w-full px-4 py-3 bg-card border border-border rounded-xl font-mono text-sm text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all duration-300";

@@ -6,6 +6,7 @@ import SkillsSection from "@/components/SkillsSection";
 import EducationSection from "@/components/EducationSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import ChatBot from "@/components/ChatBot";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const Index = () => {
@@ -20,6 +21,7 @@ const Index = () => {
         <EducationSection />
         <ContactSection />
         <Footer />
+        <ChatBot />
       </div>
     </ThemeProvider>
   );
