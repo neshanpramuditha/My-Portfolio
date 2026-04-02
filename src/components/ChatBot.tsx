@@ -54,13 +54,13 @@ const ChatBot: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 font-sans">
-      
+    
       {isOpen && (
         <div className="mb-4 w-80 sm:w-96 h-[450px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
           {/* Header */}
-          <div className="bg-primary p-4 flex justify-between items-center text-black bg-primary ">
+          <div className="bg-primary p-4 flex justify-between items-center text-white bg-primary ">
             <div className="flex items-center gap-2">
-              <Bot size={20} />
+              <Bot size={30} />
               <span className="font-semibold text-sm">Neshan's AI Assistant</span>
             </div>
             <button onClick={() => setIsOpen(false)} className="hover:bg-primary/80  p-1 rounded">
@@ -69,7 +69,7 @@ const ChatBot: React.FC = () => {
           </div>
 
           {/* Messages Area */}
-          <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-50">
+          <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-50 text-black">
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${
