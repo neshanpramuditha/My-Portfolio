@@ -79,8 +79,8 @@ const EducationSection = () => {
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <p className="font-mono text-sm text-primary tracking-widest uppercase mb-2">{"// Education"}</p>
@@ -94,8 +94,8 @@ const EducationSection = () => {
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
-              transition={{ type: "spring", stiffness: 100, damping: 20, delay: i * 0.15 }}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.15 }}
               whileHover={{ y: -3, borderColor: "hsl(45 100% 49% / 0.3)" }}
               className="mb-6 p-6 rounded-xl bg-gradient-card border border-border transition-colors cursor-default"
             >
@@ -140,7 +140,7 @@ const EducationSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.4 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
             className="mt-10 p-6 rounded-xl bg-gradient-card border border-border"
           >
             <div className="flex items-center gap-3 mb-4">

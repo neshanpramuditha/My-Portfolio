@@ -37,8 +37,8 @@ const AboutSection = () => {
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <p className="font-mono text-sm text-primary tracking-widest uppercase mb-2">{"// About Me"}</p>
@@ -97,8 +97,8 @@ const AboutSection = () => {
                 <motion.div
                   key={item.title}
                   initial={{ opacity: 0, x: 40, filter: "blur(10px)" }}
-                  animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
-                  transition={{ type: "spring", stiffness: 80, damping: 18, delay: 0.5 + i * 0.2 }}
+                  animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.5 + i * 0.2 }}
                   whileHover={{ x: 6, transition: { type: "spring", stiffness: 300, damping: 20 } }}
                   className="relative pl-12 pb-8 last:pb-0 group cursor-default"
                 >

@@ -60,8 +60,8 @@ const ContactSection = () => {
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
           <p className="font-mono text-sm text-primary tracking-widest uppercase mb-2">{"// Contact"}</p>
@@ -78,8 +78,8 @@ const ContactSection = () => {
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: -50, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
-            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="space-y-5"
           >
             {[
@@ -146,8 +146,8 @@ const ContactSection = () => {
           {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: 50, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
-            transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             className="space-y-6"
           >
             <motion.div
