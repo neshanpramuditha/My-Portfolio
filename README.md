@@ -1,9 +1,9 @@
-# 👋 Welcome to My Portfolio
+# Welcome to My Portfolio 🎈
 
 Explore my work, projects, and ideas in one place.
 
 🔗 **Click here to see:**  
-👉 https://neshan-portfolio.vercel.app/#hero
+👉 https://neshanpramudithaportfolio.vercel.app/
 ---
 
 ## 🚀 About This Portfolio
