@@ -54,11 +54,11 @@ const ChatBot: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 font-sans">
-      {/* 🗨️ Chat Window */}
+      
       {isOpen && (
         <div className="mb-4 w-80 sm:w-96 h-[450px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-5">
           {/* Header */}
-          <div className="bg-primary p-4 flex justify-between items-center text-white bg-primary ">
+          <div className="bg-primary p-4 flex justify-between items-center text-black bg-primary ">
             <div className="flex items-center gap-2">
               <Bot size={20} />
               <span className="font-semibold text-sm">Neshan's AI Assistant</span>
