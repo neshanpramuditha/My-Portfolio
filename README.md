@@ -8,7 +8,7 @@ Explore my work, projects, and ideas in one place.
 
 ## 🚀 About This Portfolio
 This repository showcases my projects, skills, and development journey.  
-Feel free to explore and give feedback, and react ♥️
+Feel free to explore and give feedback, and react with a heart ♥️
 
 ---
 
