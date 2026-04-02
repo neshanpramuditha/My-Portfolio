@@ -3,8 +3,8 @@ import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 
-const GEMINI_API_KEY = "AIzaSyAVm5I6blzF9wI6NLszd9ETRBVZIqZgrH0";
-const GEMINI_MODEL = "gemini-3-flash-preview";
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+const GEMINI_MODEL = import.meta.env.VITE_GEMINI_MODEL;
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
 
 type Message = { role: "user" | "assistant"; content: string };
