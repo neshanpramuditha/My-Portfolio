@@ -16,7 +16,6 @@ const ChatBot: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // 🔑 Replace with your actual API Key from Google AI Studio
   const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
 
   // Auto-scroll to bottom when new messages arrive
@@ -27,30 +26,44 @@ const ChatBot: React.FC = () => {
   }, [messages, loading]);
 
   const handleSend = async () => {
-    if (!input.trim() || loading) return;
+  if (!input.trim() || loading) return;
 
-    const userMessage: Message = { role: "user", text: input };
-    setMessages((prev) => [...prev, userMessage]);
-    setLoading(true);
-    const currentInput = input;
-    setInput("");
+  const userMessage: Message = { role: "user", text: input };
+  setMessages((prev) => [...prev, userMessage]);
+  setLoading(true);
+  const currentInput = input;
+  setInput("");
 
-    try {
-      const model = genAI.getGenerativeModel({ 
-        model: "gemini-1.5-flash",
-        systemInstruction: "You are Neshan's Portfolio Assistant. Be professional and friendly. Answer questions about his MERN stack, PHP, and JavaScript skills. Mention his 'ReadCycle' project if asked about work samples." 
-      });
+  try {
+    // 1. Get the model WITHOUT systemInstruction here to avoid the 404
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-      const result = await model.generateContent(currentInput);
-      const botMessage: Message = { role: "bot", text: result.response.text() };
-      
-      setMessages((prev) => [...prev, botMessage]);
-    } catch (error) {
-      setMessages((prev) => [...prev, { role: 'bot', text: "Sorry, I'm having trouble connecting right now." }]);
-    } finally {
-      setLoading(false);
-    }
-  };
+    // 2. Start a chat session instead of just generating content
+    const chat = model.startChat({
+      history: [
+        {
+          role: "user",
+          parts: [{ text: "You are Neshan's Portfolio Assistant. Be professional and friendly. Answer questions about his MERN stack, PHP, and JavaScript skills. Mention his 'ReadCycle' project if asked about work samples." }],
+        },
+        {
+          role: "model",
+          parts: [{ text: "Understood. I will represent Neshan professionally and talk about his projects like ReadCycle." }],
+        },
+      ],
+    });
+
+    const result = await chat.sendMessage(currentInput);
+    const response = result.response;
+    const botMessage: Message = { role: "bot", text: response.text() };
+    
+    setMessages((prev) => [...prev, botMessage]);
+  } catch (error: any) {
+    console.error("Detailed Error:", error);
+    setMessages((prev) => [...prev, { role: 'bot', text: "Sorry, I'm having trouble connecting right now." }]);
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <div className="fixed bottom-6 right-6 z-50 font-sans">
