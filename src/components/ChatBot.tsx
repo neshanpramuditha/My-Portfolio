@@ -18,7 +18,9 @@ const ChatBot = () => {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [lastRequestTime, setLastRequestTime] = useState(0);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const REQUEST_COOLDOWN = 1500; // 1.5 second cooldown between requests
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -28,10 +30,18 @@ const ChatBot = () => {
     const text = input.trim();
     if (!text || isLoading) return;
 
+    // Rate limiting: prevent requests within cooldown period
+    const now = Date.now();
+    if (now - lastRequestTime < REQUEST_COOLDOWN) {
+      setMessages((prev) => [...prev, { role: "assistant", content: "Please wait a moment before sending another message." }]);
+      return;
+    }
+
     const userMsg: Message = { role: "user", content: text };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
     setIsLoading(true);
+    setLastRequestTime(now);
 
     try {
       const history = [...messages, userMsg];
@@ -50,13 +60,31 @@ const ChatBot = () => {
         body: JSON.stringify({ contents }),
       });
 
-      if (!res.ok) throw new Error("API error");
+      if (res.status === 429) {
+        throw new Error("rate_limit");
+      }
+      if (res.status === 401 || res.status === 403) {
+        throw new Error("auth_error");
+      }
+      if (!res.ok) {
+        throw new Error("api_error");
+      }
 
       const data = await res.json();
       const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't respond.";
       setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
-    } catch {
-      setMessages((prev) => [...prev, { role: "assistant", content: "Oops! Something went wrong. Please try again." }]);
+    } catch (error) {
+      let errorMessage = "Oops! Something went wrong. Please try again.";
+      
+      if (error instanceof Error) {
+        if (error.message === "rate_limit") {
+          errorMessage = "API rate limit reached. Please wait a moment and try again. Consider contacting me through other channels if you have questions!";
+        } else if (error.message === "auth_error") {
+          errorMessage = "Authentication error. The chat service is temporarily unavailable.";
+        }
+      }
+      
+      setMessages((prev) => [...prev, { role: "assistant", content: errorMessage }]);
     } finally {
       setIsLoading(false);
     }
