@@ -79,7 +79,7 @@ const EducationSection = () => {
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="text-center mb-16"
         >
@@ -94,7 +94,7 @@ const EducationSection = () => {
             <motion.div
               key={item.title}
               initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } } : {}}
               transition={{ type: "spring", stiffness: 100, damping: 20, delay: i * 0.15 }}
               whileHover={{ y: -3, borderColor: "hsl(45 100% 49% / 0.3)" }}
               className="mb-6 p-6 rounded-xl bg-gradient-card border border-border transition-colors cursor-default"
