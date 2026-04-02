@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { MessageCircle, X, Send, Bot } from "lucide-react"; // Common icons
+import { MessageCircle, X, Send, Bot } from "lucide-react";
 
 interface Message {
   role: 'user' | 'bot';
