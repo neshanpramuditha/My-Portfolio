@@ -8,6 +8,9 @@ import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
+import ChatBot from './components/ChatBot';
+
+
 
 const queryClient = new QueryClient();
 
@@ -31,6 +34,7 @@ const App = () => {
         <AnimatePresence>
           {loading && <LoadingScreen onComplete={handleComplete} />}
         </AnimatePresence>
+        {!loading && <ChatBot/>}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
