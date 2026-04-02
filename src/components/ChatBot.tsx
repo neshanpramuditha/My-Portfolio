@@ -3,9 +3,8 @@ import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const GEMINI_MODEL = import.meta.env.VITE_GEMINI_MODEL;
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`;
+// API endpoint - uses backend proxy instead of direct Gemini API call
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001/api/chat";
 
 type Message = { role: "user" | "assistant"; content: string };
 
