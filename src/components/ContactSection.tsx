@@ -60,7 +60,7 @@ const ContactSection = () => {
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0.01px)" } : {}}
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-16"
         >
@@ -78,7 +78,7 @@ const ContactSection = () => {
           <motion.form
             onSubmit={handleSubmit}
             initial={{ opacity: 0, x: -50, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0.01px)" } : {}}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="space-y-5"
           >
@@ -146,7 +146,7 @@ const ContactSection = () => {
           {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: 50, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0px)" } : {}}
+            animate={isInView ? { opacity: 1, x: 0, filter: "blur(0.01px)" } : {}}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
             className="space-y-6"
           >

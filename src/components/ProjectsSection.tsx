@@ -51,7 +51,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
   return (
     <motion.div
       initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0.01px)" }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ type: "spring", stiffness: 100, damping: 20, delay: index * 0.12 }}
       onMouseEnter={() => setHovered(true)}
@@ -150,7 +150,7 @@ const ProjectsSection = () => {
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0.01px)" } : {}}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="text-center mb-16"
         >

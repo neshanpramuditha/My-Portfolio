@@ -19,7 +19,7 @@ const stagger = {
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { type: "spring", stiffness: 150, damping: 20 } },
+  show: { opacity: 1, y: 0, filter: "blur(0.01px)", transition: { type: "spring", stiffness: 150, damping: 20 } },
 };
 
 const FloatingParticle = ({ delay, x, y, size }: { delay: number; x: string; y: string; size: number }) => (

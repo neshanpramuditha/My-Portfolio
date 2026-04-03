@@ -90,7 +90,7 @@ const SkillsSection = () => {
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0.01px)" } : {}}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
           className="text-center mb-16"
         >
@@ -105,7 +105,7 @@ const SkillsSection = () => {
             <motion.div
               key={cat.title}
               initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              animate={isInView ? { opacity: 1, y: 0, filter: "blur(0.01px)" } : {}}
               transition={{ type: "spring", stiffness: 100, damping: 20, delay: ci * 0.12 }}
               whileHover={{ y: -5, borderColor: "hsl(45 100% 49% / 0.3)" }}
               className="p-5 rounded-xl bg-gradient-card border border-border transition-colors"
