@@ -8,13 +8,13 @@ import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import LoadingScreen from "./components/LoadingScreen";
+import ChatBot from "@/components/ChatBot";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [loading, setLoading] = useState(true);
   const handleComplete = useCallback(() => setLoading(false), []);
-
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -24,6 +24,7 @@ const App = () => {
         <AnimatePresence>
           {loading && <LoadingScreen onComplete={handleComplete} />}
         </AnimatePresence>
+        {!loading && <ChatBot />}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
