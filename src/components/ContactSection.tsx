@@ -69,7 +69,8 @@ const ContactSection = () => {
             Let's <span className="text-gradient-gold">Connect</span>
           </h2>
           <p className="text-muted-foreground mt-3 max-w-lg mx-auto text-sm">
-            Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+            Have a project in mind or want to discuss opportunities?
+            <span className="block mt-1">Feel free to reach out, I'm always open to new connections!</span>
           </p>
         </motion.div>
 
