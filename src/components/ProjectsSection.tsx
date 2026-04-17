@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import ecommerceMockup from "../assets/e-commerce-site-mockup.png";
 import recyclehubMockup from "../assets/recycle-hub-mockup.png";
 import libraryMockup from "../assets/library-system-mockup.png";
 import etechMockup from "../assets/e-technology-mockup.png";
@@ -8,21 +9,30 @@ import meridianMockup from "../assets/meridian-escapes-mockup.png";
 
 const projects = [
   {
+    title: "Fully functional E-commerce Website",
+    desc: "A fully functional e-commerce web app with secure user and admin authentication, a powerful admin dashboard, real time chatbot support, and seamless integrations including Supabase for image management and EmailJS for notifications.",
+    tech: ["MongoDB", "Express", "React", "Node.js", "Vite"],
+    live: "https://np-computers-frontend.vercel.app/",
+    github: "https://github.com/neshanpramuditha/NP-Computers-Frontend.git",
+    num: "01",
+    image: ecommerceMockup,
+  },
+  {
     title: "Recycle Hub",
     desc: "A web application addressing Sri Lanka's waste management crisis. Features include Waste Sorting Guide, Second Hand Marketplace, Local Recycling Center Locator, and Tips for fixing broken items.",
-    tech: ["Group Project", "Web App", "Vercel"],
+    tech: ["Group Project", "MERN"],
     live: "https://recycle-hub-viva.vercel.app/",
     github: "https://github.com/neshanpramuditha/RecycleHub.git",
-    num: "01",
+    num: "02",
     image: recyclehubMockup,
   },
   {
     title: "Library Appointment & Book Donation System",
-    desc: "A full-stack web application modernizing core library operations — appointment scheduling, book donation verification, user access control, and reporting with audit logging.",
+    desc: "A full-stack web application modernizing core library operations - appointment scheduling, book donation verification, user access control, and reporting with audit logging.",
     tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     live: "",
     github: "https://github.com/neshanpramuditha/Library-Management-System.git",
-    num: "02",
+    num: "03",
     image: libraryMockup,
   },
   {
@@ -31,7 +41,7 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     live: "https://neshanpramuditha.github.io/E-Technology-SL/index.html",
     github: "https://github.com/neshanpramuditha/E-Technology-SL.git",
-    num: "03",
+    num: "04",
     image: etechMockup,
   },
   {
@@ -40,7 +50,7 @@ const projects = [
     tech: ["Vite", "TypeScript", "React", "Tailwind CSS"],
     live: "https://meridian-escapes.vercel.app/",
     github: "https://github.com/neshanpramuditha/Meridian-Escapes.git",
-    num: "04",
+    num: "05",
     image: meridianMockup,
   },
 ];

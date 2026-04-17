@@ -19,17 +19,19 @@ const educationItems = [
   {
     icon: BookOpen,
     period: "2026 – Present",
-    title: "Diploma in Artificial Intelligence (Ongoing)",
+    title: "Diploma in Artificial Intelligence",
     institution: "IBSC Campus",
     details: [],
     logo: ibscLogo,
   },
   {
     icon: BookOpen,
-    period: "2025 – Present",
-    title: "MERN Stack Development Course (Ongoing)",
+    period: "2025 – 2026",
+    title: "Full Stack Development Course (MERN)",
     institution: "SKYREC Academy",
-    details: [],
+    details: ["MERN stack development with hands-on projects",
+      "GitHub branching, version control, and deployment strategies",
+      "Figma design collaboration and UI/UX best practices"],
     logo: skyrecLogo,
   },
   {
@@ -57,8 +59,8 @@ const educationItems = [
 ];
 
 const certifications = [
-  { name: "MERN Stack Development Course (Ongoing)", issuer: "SKYREC Academy", date: "2025 – Present", url: null },
-  { name: "Diploma in Artificial Intelligence (Ongoing)", issuer: "IBSC Campus", date: "2026 – Present", url: null },
+  { name: "Diploma in Artificial Intelligence (Ongoing)", issuer: "IBSC Campus", date: "2026 – Present", url: null, badge: ibscLogo },
+  { name: "Full-Stack Web Development (MERN) Course", issuer: "SKYREC Academy", date: "2025 – 2026", url: "https://certificate.skyrek.com/certifcates/completion/oTjhq7QglGBd", badge: skyrecLogo },
   { name: "Linux Essentials", issuer: "Cisco Networking Academy", date: "2026-02", url: "https://www.credly.com/badges/7363db9e-535b-4bbe-9a9b-2ccf44c41d64/public_url", badge: ciscoBadge },
   { name: "Introduction to Programming with Python", issuer: "HarvardX CS50", date: "2026-01", url: "https://www.credly.com/badges/306b87e1-9c48-4648-b419-29f79e9e7820/public_url", badge: harvardBadge },
   { name: "CSS (Basic)", issuer: "HackerRank", date: "2025-10", url: "https://www.hackerrank.com/certificates/718a23b4b327", badge: hackerrankBadge },
@@ -187,14 +189,31 @@ const EducationSection = () => {
               ))}
             </div>
             <motion.a
-              href="https://credly.com/users/neshan-premarathna"
+              href="https://www.credly.com/users/neshan-premarathna"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ x: 5 }}
-              className="inline-flex items-center gap-1 mt-4 font-mono text-xs text-primary hover:underline"
+              className="flex flex-col items-center gap-1 mt-4 font-mono text-xs text-primary"
             >
-              View all on Credly →
+              <button className="bg-primary text-black w-full py-2 px-4 rounded-md hover:bg-primary/80 transition-colors">
+                Event Rewards →
+              </button>
+              
             </motion.a>
+
+            <motion.a
+              href="https://www.credly.com/users/neshan-premarathna"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ x: 5 }}
+              className="flex flex-col items-center gap-1 mt-4 font-mono text-xs text-primary"
+            >
+              <button className="bg-primary text-black w-full py-2 px-4 rounded-md hover:bg-primary/80 transition-colors">
+                Credly →
+              </button>
+              
+            </motion.a>
+
           </motion.div>
         </div>
       </div>

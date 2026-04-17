@@ -12,7 +12,7 @@ const highlights = [
 const timeline = [
   { year: "2021", title: "Advanced Level (A/L)", desc: "Successfully passed the G.C.E. Advanced Level Examination, Technology Stream, MO/ Wellassa Central College, District Rank 10" },
   { year: "2021 - Present", title: "BICT (HONS) Software Development", desc: "Began undergraduate studies in Information & Communication Technology, Specialized pathway, Software Development" },
-  { year: "2025 - Present", title: "Deep Dive into MERN Stack (Ongoing)", desc: "MERN Stack Development Course, Built full-stack projects with React, Node.js, MongoDB" },
+  { year: "2025 - 2026", title: "Deep Dive into MERN Stack", desc: "Full Stack Development Course (MERN), Built full-stack projects with React, Node.js, MongoDB" },
   { year: "2026 - Present", title: "Cloud & AI Exploration (Ongoing)", desc: "Expanded into cloud infrastructure, AI/ML, and scalable system design" },
   { year: "2026", title: "Seeking Opportunities", desc: "Looking for roles in full-stack development & AI engineering" },
 ];
