@@ -37,7 +37,7 @@ const projects = [
     image: etechMockup,
   },
   {
-    title: "AI Front End Design Project",
+    title: "Vibe Coded - Front End Design Project for Meridian Escapes",
     desc: "A website created entirely using AI for the AI Diploma, designed as a travel platform for MERIDIAN ESCAPES.",
     tech: ["Vite", "TypeScript", "React", "Tailwind CSS"],
     live: "https://meridian-escapes.vercel.app/",
