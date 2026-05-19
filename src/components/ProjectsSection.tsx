@@ -17,15 +17,7 @@ const projects = [
     num: "01",
     image: ecommerceMockup,
   },
-  {
-    title: "Recycle Hub",
-    desc: "A web application addressing Sri Lanka's waste management crisis. Features include Waste Sorting Guide, Second Hand Marketplace, Local Recycling Center Locator, and Tips for fixing broken items.",
-    tech: ["Group Project", "MERN"],
-    live: "https://recycle-hub-viva.vercel.app/",
-    github: "https://github.com/neshanpramuditha/RecycleHub.git",
-    num: "02",
-    image: recyclehubMockup,
-  },
+
   {
     title: "Library Appointment & Book Donation System",
     desc: "A full-stack web application modernizing core library operations - appointment scheduling, book donation verification, user access control, and reporting with audit logging.",
