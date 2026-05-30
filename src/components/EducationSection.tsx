@@ -189,7 +189,7 @@ const EducationSection = () => {
               ))}
             </div>
             <motion.a
-              href="https://www.credly.com/users/neshan-premarathna"
+              href="https://credentials.certdirectory.io/u/neshanp-pramuditha"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ x: 5 }}
