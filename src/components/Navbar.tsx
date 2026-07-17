@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import logoLight from "@/assets/logo-light.png";
@@ -19,13 +19,19 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const { scrollY } = useScroll();
+  const lastScroll = useRef(0);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious() ?? 0;
-    setScrolled(latest > 50);
-    setHidden(latest > previous && latest > 150);
-  });
+  useEffect(() => {
+    const onScroll = () => {
+      const current = window.scrollY || window.pageYOffset;
+      setScrolled(current > 50);
+      setHidden(current > lastScroll.current && current > 150);
+      lastScroll.current = current;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <motion.nav

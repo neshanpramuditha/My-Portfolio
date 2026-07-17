@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { GraduationCap, Award, BookOpen, ExternalLink } from "lucide-react";
-import ibscLogo from "@/assets/ibsc-logo.jpg";
 import skyrecLogo from "@/assets/skyrec-logo.jpg";
 import uokLogo from "@/assets/uok-logo.png";
 import schoolLogo from "@/assets/school-logo.png";
@@ -16,14 +15,6 @@ import warltonBadge from "@/assets/warlton-badge.png";
 import osloBadge from "@/assets/oslo-badge.png";
 
 const educationItems = [
-  {
-    icon: BookOpen,
-    period: "2026 – Present",
-    title: "Diploma in Artificial Intelligence",
-    institution: "IBSC Campus",
-    details: [],
-    logo: ibscLogo,
-  },
   {
     icon: BookOpen,
     period: "2025 – 2026",
@@ -59,7 +50,6 @@ const educationItems = [
 ];
 
 const certifications = [
-  { name: "Diploma in Artificial Intelligence (Ongoing)", issuer: "IBSC Campus", date: "2026 – Present", url: null, badge: ibscLogo },
   { name: "Full-Stack Web Development (MERN) Course", issuer: "SKYREC Academy", date: "2025 – 2026", url: "https://certificate.skyrek.com/certifcates/completion/oTjhq7QglGBd", badge: skyrecLogo },
   { name: "Linux Essentials", issuer: "Cisco Networking Academy", date: "2026-02", url: "https://www.credly.com/badges/7363db9e-535b-4bbe-9a9b-2ccf44c41d64/public_url", badge: ciscoBadge },
   { name: "Introduction to Programming with Python", issuer: "HarvardX CS50", date: "2026-01", url: "https://www.credly.com/badges/306b87e1-9c48-4648-b419-29f79e9e7820/public_url", badge: harvardBadge },

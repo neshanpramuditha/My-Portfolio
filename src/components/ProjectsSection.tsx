@@ -2,25 +2,33 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import ecommerceMockup from "../assets/e-commerce-site-mockup.png";
-import recyclehubMockup from "../assets/recycle-hub-mockup.png";
 import libraryMockup from "../assets/library-system-mockup.png";
 import etechMockup from "../assets/e-technology-mockup.png";
-import meridianMockup from "../assets/meridian-escapes-mockup.png";
+import Clinexa from "../assets/Clinexa.png"
 
 const projects = [
   {
-    title: "Fully functional E-commerce Website",
+    title: "CLINEXA",
+    desc: "CLINEXA is a full-stack Hospital Appointment Management System developed as a university group project to streamline hospital operations through secure and efficient appointment scheduling.Provides dedicated portals for Administrators, Doctors, and Patients, featuring role-based access control, appointment management, doctor scheduling, patient management, and responsive dashboards.",
+    tech: ["React", "Vite", "JavaScript", "Tailwind CSS", "Supabase", "Google OAuth", "React Router DOM", "EmailJS", "Figma"],
+    live: "https://clinexa-azure.vercel.app/home",
+    github: "https://github.com/neshanpramuditha/Hospital-Appointment-System.git",
+    num: "01",
+    image: Clinexa,
+  },
+  {
+    title: "NP COMPUTERS",
     desc: "A fully functional e-commerce web app with secure user and admin authentication, a powerful admin dashboard, real time chatbot support, and seamless integrations including Supabase for image management and EmailJS for notifications.",
     tech: ["MongoDB", "Express", "React", "Node.js", "Vite"],
     live: "https://np-computers-frontend.vercel.app/",
     github: "https://github.com/neshanpramuditha/NP-Computers-Frontend.git",
-    num: "01",
+    num: "02",
     image: ecommerceMockup,
   },
 
   {
-    title: "Library Appointment & Book Donation System",
-    desc: "A full-stack web application modernizing core library operations - appointment scheduling, book donation verification, user access control, and reporting with audit logging.",
+    title: "BOOK STORY",
+    desc: "A full-stack Library Appointment & Book Donation System modernizing core library operations - appointment scheduling, book donation verification, user access control, and reporting with audit logging.",
     tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
     live: "",
     github: "https://github.com/neshanpramuditha/Library-Management-System.git",
@@ -35,15 +43,6 @@ const projects = [
     github: "https://github.com/neshanpramuditha/E-Technology-SL.git",
     num: "04",
     image: etechMockup,
-  },
-  {
-    title: "Vibe Coded - Front End Design Project for Meridian Escapes",
-    desc: "A website created entirely using AI for the AI Diploma, designed as a travel platform for MERIDIAN ESCAPES.",
-    tech: ["Vite", "TypeScript", "React", "Tailwind CSS"],
-    live: "https://meridian-escapes.vercel.app/",
-    github: "https://github.com/neshanpramuditha/Meridian-Escapes.git",
-    num: "05",
-    image: meridianMockup,
   },
 ];
 

@@ -24,7 +24,7 @@ const ContactSection = () => {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_email: "neshanpramu2@gmail.com",
+          to_email: "neshan.pramu@gmail.com",
         },
         "xrYUAq5zfpH3lo8so"
       );
@@ -49,7 +49,7 @@ const ContactSection = () => {
   const socials = [
     { icon: Github, label: "GitHub", href: "https://github.com/neshanpramuditha" },
     { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/neshan-pramuditha-5170a1328" },
-    { icon: Mail, label: "Email", href: "mailto:neshanpramu2@gmail.com" },
+    { icon: Mail, label: "Email", href: "mailto:neshan.pramu@gmail.com" },
     { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/share/1C8Gn3jzT1/?mibextid=wwXIfr" },
   ];
 
@@ -157,7 +157,7 @@ const ContactSection = () => {
             >
               <div className="flex items-center gap-3 mb-3">
                 <Mail size={16} className="text-primary" />
-                <span className="font-mono text-sm text-foreground">neshanpramu2@gmail.com</span>
+                <span className="font-mono text-sm text-foreground">neshan.pramu@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin size={16} className="text-primary" />
