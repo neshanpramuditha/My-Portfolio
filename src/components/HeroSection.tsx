@@ -6,7 +6,7 @@ import { useCallback } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const roles = [
-  "SOFTWARE ENGINEER",
+  "SOFTWARE ENGINEERING",
   "Full-Stack Developer (MERN)",
   "DEVOPS FUNDAMENTALS & UI/UX Enthusiast",
 ];
