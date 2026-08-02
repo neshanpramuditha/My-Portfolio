@@ -6,10 +6,9 @@ import { useCallback } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const roles = [
-  "MERN Stack Developer",
-  "Full-Stack Developer",
-  "UI/UX Enthusiast",
-  "AI & DevOps Learner",
+  "SOFTWARE ENGINEER",
+  "Full-Stack Developer (MERN)",
+  "DEVOPS FUNDAMENTALS & UI/UX Enthusiast",
 ];
 
 const stagger = {
@@ -143,7 +142,7 @@ const HeroSection = () => {
             <span className="border-r-2 border-primary animate-blink ml-0.5">&nbsp;</span>
           </motion.div>
           <motion.p variants={fadeUp} className="text-muted-foreground text-sm mb-8 max-w-md mx-auto lg:mx-0">
-            ICT Undergraduate @ University of Kelaniya · Building scalable web applications
+            BICT Undergraduate @ University of Kelaniya | Beyond the Software
           </motion.p>
 
           <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">

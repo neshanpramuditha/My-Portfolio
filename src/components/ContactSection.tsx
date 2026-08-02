@@ -161,7 +161,7 @@ const ContactSection = () => {
               </div>
               <div className="flex items-center gap-3">
                 <MapPin size={16} className="text-primary" />
-                <span className="font-mono text-sm text-foreground"><span className="font-mono text-sm text-foreground">Bibile, Sri Lanka</span></span>
+                <span className="font-mono text-sm text-foreground"><span className="font-mono text-sm text-foreground">Dalugama, Kelaniya, Sri Lanka</span></span>
               </div>
             </motion.div>
 
@@ -197,7 +197,7 @@ const ContactSection = () => {
             >
               <p className="font-mono text-sm text-primary font-semibold">🟢 Currently open to:</p>
               <ul className="mt-2 space-y-1">
-                {["Software Developer Internships", "Freelance MERN Projects", "Open Source Collaboration"].map((item, i) => (
+                {["Software Engineering Internships", "Software Developer Internships", "Freelance MERN Projects", "Open Source Collaboration"].map((item, i) => (
                   <motion.li
                     key={item}
                     initial={{ opacity: 0, x: -10 }}

@@ -4,17 +4,17 @@ import { Code2, Cloud, Database, Palette } from "lucide-react";
 
 const highlights = [
   { icon: Code2, label: "MERN Stack", desc: "Full-stack web development" },
-  { icon: Cloud, label: "Cloud & DevOps", desc: "Docker, AWS" },
+  { icon: Cloud, label: "Cloud & DevOps", desc: "Docker" },
   { icon: Database, label: "Databases", desc: "MongoDB, PostgreSQL" },
   { icon: Palette, label: "UI/UX Design", desc: "Figma, Responsive Design" },
 ];
 
 const timeline = [
   { year: "2021", title: "Advanced Level (A/L)", desc: "Successfully passed the G.C.E. Advanced Level Examination, Technology Stream, MO/ Wellassa Central College, District Rank 10" },
-  { year: "2021 - Present", title: "BICT (HONS) Software Development", desc: "Began undergraduate studies in Information & Communication Technology, Specialized pathway, Software Development" },
+  { year: "2021 - Present", title: "BICT (HONS) Degree", desc: "Began undergraduate studies in Information & Communication Technology, Specialized pathway, Software Development" },
   { year: "2025 - 2026", title: "Deep Dive into MERN Stack", desc: "Full Stack Development Course (MERN), Built full-stack projects with React, Node.js, MongoDB" },
-  { year: "2026 - Present", title: "Cloud & AI Exploration (Ongoing)", desc: "Expanded into cloud infrastructure, AI/ML, and scalable system design" },
-  { year: "2026", title: "Seeking Opportunities", desc: "Looking for roles in full-stack development & AI engineering" },
+  { year: "2026 - Present", title: "Cloud & DevOps Exploration (Ongoing)", desc: "Expanded into cloud infrastructure, DevOps, and scalable system design" },
+  { year: "2026", title: "Seeking Opportunities", desc: "Looking for roles in Softare Engineer, Full-Stack Development(MERN) & BA" },
 ];
 
 const stagger = {
@@ -55,10 +55,10 @@ const AboutSection = () => {
             animate={isInView ? "show" : "hidden"}
           >
             <motion.p variants={fadeUp} className="text-muted-foreground leading-relaxed mb-6">
-              Dedicated ICT undergraduate passionate about software development, innovation, and impactful collaboration. Currently at the University of Kelaniya, mastering MERN stack, cloud infrastructure, AI, and scalable system design.
+              Dedicated BICT undergraduate passionate about Software Engineering, Software Development, innovation, and impactful collaboration. Currently at the University of Kelaniya, mastering MERN stack, basic DevOps fundamentals, and scalable system design.
             </motion.p>
             <motion.p variants={fadeUp} className="text-muted-foreground leading-relaxed mb-8">
-              I thrive on turning complex problems into elegant, user-friendly solutions. My goal is to build products that make a real difference while continuously growing as a developer.
+              I thrive on turning complex problems into elegant, user-friendly solutions. My goal is to build products that make a real difference while continuously growing as a Software Engineer.
             </motion.p>
 
             <motion.div variants={stagger} className="grid grid-cols-2 gap-4">
